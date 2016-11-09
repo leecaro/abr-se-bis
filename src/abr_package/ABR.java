@@ -1,6 +1,7 @@
 package abr_package;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class ABR {
 	
@@ -21,11 +22,11 @@ public class ABR {
 			}
 		
 		if (arbre.isEmpty()) { //si l'arbre est vide on l'ajoute
-			Noeud n = new Noeud(value);
+			Noeud n = new Noeud(value, 1);
 			arbre.add(n);
 		} else {
 			if (b && equals((arbre.isEmpty()))) { //si elle n'est pas dans l'arbre, on l'ajoute
-				Noeud n = new Noeud(value);
+				Noeud n = new Noeud(value, arbre.size() + 1);
 				arbre.get(-1).left = n; //on ajoute le noeud en fin d'arbre de façon pas très réfléchie
 				arbre.add(n);
 			}
@@ -59,4 +60,32 @@ public class ABR {
 		return b;
 	}
 	
+	public int maxPosition() {
+		
+		int max = 1;
+		for (Noeud n : arbre) {
+			if (n.pos > max) {
+				max = n.pos;
+			}
+		}
+		return max;
+	}
+	
+	/**public void toList(java.util.List<java.lang.Integer> l) {
+		
+		int max = 1;
+		for (Noeud n : arbre) {
+			if (n.pos > max) {
+				max = n.pos;
+			}
+		}
+		
+		for (int i = 0; i < max; i ++) {
+			for (Noeud m : arbre) {
+				if (m.pos == i) {
+					l.add(m); //add() ne fonctionne pas pour ajouter un noeud à la liste l
+				}
+			}
+		}
+	}**/
 }
